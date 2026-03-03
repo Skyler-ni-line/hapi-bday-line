@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Line's Birthday 2026</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <style>
+        body { background-color: #0d001a; color: white; font-family: sans-serif; text-align: center; margin: 0; }
+        .main-container { padding: 50px 20px; }
+        
+        /* The Card */
+        .bday-card {
+            background: #fff; color: #333; padding: 30px; border-radius: 15px;
+            width: 300px; margin: 0 auto; border: 5px solid #602d91;
+            box-shadow: 10px 10px 0px #ffd700; /* Simple shadow hack */
+        }
+
+        /* Message Wall */
+        .guestbook { background: #fdfdfd; color: #222; margin-top: 50px; padding: 30px 10px; }
+        input, textarea { width: 80%; max-width: 350px; padding: 10px; margin: 5px; border: 1px solid #602d91; }
+        #post-btn { background: #602d91; color: white; border: none; padding: 12px 30px; cursor: pointer; font-weight: bold; }
+
+        .msg-item { background: white; border-left: 5px solid #ff8c00; padding: 15px; margin: 10px auto; max-width: 400px; text-align: left; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        #entry-button { position: fixed; inset: 0; background: black; z-index: 100; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    </style>
+</head>
+<body>
+
+    <div id="entry-button">
+        <h1>FOXIE PORTAL 🦊</h1>
+        <button onclick="startApp()" style="padding:15px 30px; background:purple; color:white; border:none; border-radius:30px; cursor:pointer;">CLICK TO ENTER</button>
+    </div>
+
+    <audio id="bg-music" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+    <div class="main-container">
+        <div class="bday-card">
+            <h2 style="color:#602d91;">HAPPY BIRTHDAY LINE!</h2>
+            <p>Our favorite MNL48 Foxie</p>
+            <span style="font-size: 40px;">🎂💜🦊</span>
+        </div>
+    </div>
+
+    <div class="guestbook">
+        <h2>Fan Greeting Wall</h2>
+        <input type="text" id="fan-name" placeholder="Name"><br>
+        <textarea id="fan-msg" rows="3" placeholder="Your wish for Line..."></textarea><br>
+        <button id="post-btn" onclick="sendToFirebase()">Submit Greeting</button>
+        <div id="posts" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        // PASTE YOUR FIREBASE CONFIG FROM THE "CONFIG" TAB HERE
+        var firebaseConfig = {
+            apiKey: "AIza...",
+            authDomain: "project-line-ca7ea.firebaseapp.com",
+            databaseURL: "https://project-line-ca7ea-default-rtdb.firebaseio.com",
+            projectId: "project-line-ca7ea",
+            appId: "1:810502528975:web:..."
+        };
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.database();
+
+        function startApp() {
+            document.getElementById('entry-button').style.display = 'none';
+            document.getElementById('bg-music').play();
+        }
+
+        function sendToFirebase() {
+            var n = document.getElementById('fan-name').value;
+            var m = document.getElementById('fan-msg').value;
+            if(n != "" && m != "") {
+                db.ref('messages').push({ sender: n, message: m });
+                document.getElementById('fan-msg').value = ""; // reset the message box
+            }
+        }
+
+        db.ref('messages').on('value', function(snap) {
+            var list = document.getElementById('posts');
+            list.innerHTML = "";
+            snap.forEach(function(item) {
+                var data = item.val();
+                list.innerHTML = '<div class="msg-item"><b>' + data.sender + ':</b> ' + data.message + '</div>' + list.innerHTML;
+            });
+        });
+    </script>
+</body>
+</html>
