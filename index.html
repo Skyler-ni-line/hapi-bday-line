@@ -5,25 +5,49 @@
     <title>Line's Birthday 2026</title>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script> 
- 
+
     <style>
         /* yung pinaka card part "happ bday line" change mo dto ung mga color,fonts etc.. */
         body { background-color: #DCA7EB; color: white; font-family: sans-serif; text-align: center; margin: 0; }
- .main-container { padding: 50px 20px; } 
+        .main-container { padding: 50px 20px; } 
         
         .bday-card {
             background: #fff; color: #333; padding: 30px; border-radius: 15px;
             width: 300px; margin: 0 auto; border: 5px solid #602d91;
             box-shadow: 10px 10px 0px #7F0BB0;
         }
-/* dto naman style part san sila mag lagay ng messages pwede change colors and fonts pad etc... */
+
+        /* dto naman style part san sila mag lagay ng messages pwede change colors and fonts pad etc... */
         .guestbook { background: #D075F0; color: #000000; margin-top: 50px; padding: 30px 10px; }
         input, textarea { width: 80%; max-width: 350px; padding: 10px; margin: 5px; border: 1px solid #602d91; }
         #post-btn { background: #602d91; color: white; border: none; padding: 12px 30px; cursor: pointer; font-weight: bold; }
 
-        .msg-item { background: white; border-left: 5px solid #ff8c00; padding: 15px; margin: 10px auto; max-width: 400px; text-align: left; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        /* PADLET GRID SETUP - para tumabi-tabi sila horizontally */
+        #posts { 
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+            gap: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .msg-item { 
+            background: white; 
+            padding: 20px; 
+            text-align: left; 
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.2); 
+            min-height: 150px;
+            word-wrap: break-word;
+            /* para magmukhang sticky note na nakadikit sa wall */
+            transform: rotate(-1deg);
+        }
+
+        /* konting liko para sa "human feel" */
+        .msg-item:nth-child(even) { transform: rotate(2deg); }
+
         /* pwede baguhin bg color ng pic ng fxcs logo (wala pako copy) */
-#entry-button { position: fixed; inset: 0; background: #A479BA; z-index: 100; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        #entry-button { position: fixed; inset: 0; background: #A479BA; z-index: 100; display: flex; flex-direction: column; justify-content: center; align-items: center; }
     </style>
 </head>
 <body>
@@ -85,12 +109,19 @@
             }
         }
 
+        // Listahan ng kulay para sa Padlet feel
+        var kulay = ["#FFF78A", "#FFC5C5", "#C5EBAA", "#AEE6E6", "#E7BCDE"];
+
         db.ref('messages').on('value', function(snap) {
             var list = document.getElementById('posts');
             list.innerHTML = "";
             snap.forEach(function(item) {
                 var data = item.val();
-                list.innerHTML = '<div class="msg-item"><b>' + data.sender + ':</b> ' + data.message + '</div>' + list.innerHTML;
+                // Pick random kulay
+                var randomBg = kulay[Math.floor(Math.random() * kulay.length)];
+                
+                // Retained your original innerHTML style but with the grid/color logic
+                list.innerHTML = '<div class="msg-item" style="background-color:' + randomBg + ';"><b>' + data.sender + ':</b> <br>' + data.message + '</div>' + list.innerHTML;
             });
         });
     </script>
