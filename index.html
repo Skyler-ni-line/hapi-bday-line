@@ -11,64 +11,58 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Patrick+Hand&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --primary-purple: #602d91;
-            --accent-purple: #DCA7EB;
-            --shadow-color: #7F0BB0;
-            --paper-white: #fdfdfd;
-        }
-
+<style>
         /* yung pinaka card part "happ bday line" change mo dto ung mga color,fonts etc.. */
-        body { 
-            background-color: var(--accent-purple); 
+    body { 
+background-color: #DCA7EB; 
             /* paper texture dto */
-            background-image: radial-gradient(#b078c2 1px, transparent 1px);
-            background-size: 20px 20px;
-            color: #333; 
-            font-family: 'Patrick Hand', cursive; 
-            text-align: center; 
-            margin: 0; 
-            overflow-x: hidden;
-        }
-        /* Entry Overlay - pwede baguhin bg color ng pic ng fxcs logo */
-#entry-button { 
-     position: fixed; 
-         inset: 0; 
-            background: #A479BA; 
-            z-index: 1000; 
-      display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-         align-items: center; 
-            transition: opacity 0.5s ease;
+    background-image: radial-gradient(#b078c2 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: #333333; 
+    font-family: 'Patrick Hand', cursive; 
+    text-align: center; 
+     margin: 0; 
+    overflow-x: hidden;
         }
 
-        .main-container { padding: 60px 20px; } 
+        /* Entry Overlay - pwede baguhin bg color ng pic ng fxcs logo */
+ #entry-button { 
+  position: fixed; 
+     inset: 0; 
+ background: #A479BA; 
+    z-index: 1000; 
+display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    transition: opacity 0.5s ease;
+        }
+
+ .main-container { padding: 60px 20px; } 
         
-        /* bday card (cut papers) */
-        .bday-card {
-            background: #fff; 
-            color: #333; 
-            padding: 40px; 
-            /* borders */
-            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-            width: 85%;
-            max-width: 400px; 
-            margin: 0 auto; 
-            border: 4px solid var(--primary-purple);
-            box-shadow: 8px 10px 0px var(--shadow-color);
-            transform: rotate(-1deg);
+     /* bday card (cut papers) */
+    .bday-card {
+     background: #ffffff; 
+     color: #333333; 
+     padding: 40px; 
+     /* borders - wobbly hand-cut look */
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+ width: 85%;
+    max-width: 400px; 
+    margin: 0 auto; 
+     border: 4px solid #602d91;
+     box-shadow: 8px 10px 0px #7F0BB0;
+    transform: rotate(-1deg);
         }
 
         /* dto naman style part san sila mag lagay ng messages pwede change colors and fonts pad etc... */
         .guestbook { 
-            background: var(--paper-white); 
-            color: #000; 
+            background: #e396ff; 
+            color: #000000; 
             margin-top: 50px; 
             padding: 50px 20px; 
-            border-top: 5px solid var(--primary-purple);
-            /* Zigzag */
+            border-top: 5px solid #602d91;
+            /* Zigzag shadow */
             box-shadow: inset 0 10px 10px rgba(0,0,0,0.05);
         }
 
@@ -77,7 +71,7 @@
             max-width: 400px; 
             padding: 12px; 
             margin: 8px 0; 
-            border: 2px solid var(--primary-purple); 
+            border: 2px solid #602d91; 
             border-radius: 10px 5px 12px 4px; /* irreg shp*/
             background: #fffdf0;
             font-family: 'Patrick Hand', cursive;
@@ -85,8 +79,8 @@
         }
 
         #post-btn { 
-            background: var(--primary-purple); 
-            color: white; 
+            background: #602d91; 
+            color: #ffffff; 
             border: none; 
             padding: 15px 40px; 
             cursor: pointer; 
@@ -95,10 +89,10 @@
             border-radius: 5px;
             transition: transform 0.2s, background 0.3s;
             margin-top: 10px;
-            box-shadow: 3px 4px 0px #333;
+            box-shadow: 3px 4px 0px #333333;
         }
 
-        #post-btn:active { transform: translateY(2px) translateX(1px); box-shadow: 1px 1px 0px #333;}
+        #post-btn:active { transform: translateY(2px) translateX(1px); box-shadow: 1px 1px 0px #333333;}
 
         /* grid para tabi tabio */
         #posts { 
@@ -119,7 +113,7 @@
             word-wrap: break-word;
             position: relative;
             transition: all 0.3s ease;
-            color: #333;
+            color: #333333;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -157,7 +151,7 @@
         .msg-item b {
             display: block;
             margin-bottom: 8px;
-            color: var(--primary-purple);
+            color: #602d91;
             font-family: 'Patrick Hand', cursive;
             font-size: 1.1em;
             text-decoration: underline;
@@ -169,7 +163,7 @@
     <div id="entry-button">
         <h1 style="font-family: 'Gochi Hand'; font-size: 4em; margin-bottom: 10px;">FOXIES PORTAL 🦊</h1>
         <p style="margin-bottom: 25px;">Ready to celebrate Line's Birthday?</p>
-        <button onclick="startApp()" style="padding:15px 40px; background:purple; color:white; border:2px solid white; border-radius:5px; cursor:pointer; font-family: 'Gochi Hand'; font-size: 1.5em; box-shadow: 4px 4px 0px white;">CLICK TO ENTER</button>
+        <button onclick="startApp()" style="padding:15px 40px; background:#800080; color:#ffffff; border:2px solid #ffffff; border-radius:5px; cursor:pointer; font-family: 'Gochi Hand'; font-size: 1.5em; box-shadow: 4px 4px 0px #ffffff;">CLICK TO ENTER</button>
     </div>
 
     <audio id="bg-music" loop>
@@ -178,7 +172,7 @@
   
     <div class="main-container">
         <div class="bday-card">
-            <h2 style="color:var(--primary-purple); margin-top: 0; font-family: 'Gochi Hand'; font-size: 2.2em;">HAPPY BIRTHDAY MNL48 LINE!</h2>
+            <h2 style="color:#602d91; margin-top: 0; font-family: 'Gochi Hand'; font-size: 2.2em;">HAPPY BIRTHDAY MNL48 LINE!</h2>
             <p style="font-size: 1.3em;">Our makulit and energetic oshi!</p>
             <div style="font-size: 50px; margin-top: 15px;">🎂💜🦊</div>
         </div>
@@ -193,12 +187,12 @@
         
         <button id="post-btn" onclick="sendToFirebase()">Stick it on the wall! ✨</button>
         
-        <div id="posts">
-            </div>
+        <div id="posts"></div>
     </div>
 
     <script>
-        // tagal ko inayos to ayaw nya mag lagay 
+        // tagal ko inayos to ayaw nya mag lagay 
+        // medj nag pa hrelp ako dto sa ai AHAHAH
         const firebaseConfig = {
             apiKey: "AIzaSyAOnes7rwl0NPqeSkBJA1iGCfmWKBFaRUE",
             authDomain: "hbd-line-57dd2.firebaseapp.com",
@@ -222,7 +216,7 @@
             const audio = document.getElementById('bg-music');
             audio.play().catch(err => console.log("Audio blocked, click again."));
             
-            // Initial celebration
+            // celeb
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
         }
 
@@ -239,12 +233,12 @@
                     timestamp: Date.now()
                 });
 
-                // Clear inputs & success feedback
+                // feedback
                 msgEl.value = "";
                 btn.innerText = "Posted! 💜";
                 btn.style.background = "#4CAF50";
 
-                // Fun confetti on submit
+                // confetti pag ka submit
                 confetti({
                     particleCount: 100,
                     spread: 70,
@@ -260,7 +254,7 @@
             }
         }
 
-        // Listahan ng kulay para sa Padlet feel
+        // Listahan ng colors for padlet random
         const colors = ["#FFF78A", "#FFC5C5", "#C5EBAA", "#AEE6E6", "#E7BCDE", "#FFD1A4"];
 
         // display messages
